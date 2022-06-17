@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Xr-rR-sch">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Xr-rR-sch">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -436,6 +437,10 @@ with social media.</string>
                             <constraint firstItem="8JF-hY-0aG" firstAttribute="top" secondItem="P9p-xK-rsK" secondAttribute="top" id="r3H-ZN-1IH"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="EmailField" destination="DLV-HV-hoD" id="Ciu-Zg-FN5"/>
+                        <outlet property="PasswordField" destination="5xx-70-2qg" id="qxp-BC-VJg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eeu-7U-BN5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -675,6 +680,9 @@ with social media.</string>
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="Continue_Tapped:" destination="fbD-tJ-zah" eventType="touchUpInside" id="RfF-On-6L9"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S1B-cF-g8g">
                                                 <rect key="frame" x="119.5" y="827" width="175" height="50"/>
@@ -759,6 +767,12 @@ with social media.</string>
                             <constraint firstAttribute="bottom" secondItem="1nA-fs-Rud" secondAttribute="bottom" id="vCv-Df-RW4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ConfirmpasswordField" destination="9Gu-GZ-9rM" id="mbo-b8-Bp8"/>
+                        <outlet property="EmailField" destination="PfF-8j-TIc" id="bnn-4r-DUO"/>
+                        <outlet property="FullnameField" destination="EFm-GO-XJS" id="idh-kc-5TJ"/>
+                        <outlet property="PasswordField" destination="gl0-If-l9E" id="SAa-9r-J5X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tct-GH-7Ad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1190,7 +1204,7 @@ recieve a verification code.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBE-jB-Kvc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5160.8695652173919" y="69.642857142857139"/>
+            <point key="canvasLocation" x="5103" y="70"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="w0i-e7-Phc">
