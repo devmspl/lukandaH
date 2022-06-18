@@ -12,5 +12,8 @@ public var baseUrl = "http://93.188.167.68:8006/api/"
 public struct Api {
     public static var Login = baseUrl + "users/login"
     public static var Signup = baseUrl + "users/create"
+    public static var Getprofile = baseUrl + "users/profile/"
+    public static var Gethotel = baseUrl + "hotels/getHotels/"
+    public static var Gethotelbyid = baseUrl + "hotels/getHotelById/"
 }
  

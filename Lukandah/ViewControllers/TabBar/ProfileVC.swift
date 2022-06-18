@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ProfileVC: UIViewController {
     
@@ -18,14 +19,24 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var proImageView: UIView!
     @IBOutlet weak var bookingCount: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var Profilepicture: UIImageView!
     
+    @IBOutlet weak var Topview: UIView!
+    @IBOutlet weak var Profilename: UILabel!
     let profileOptionArray = ["Manage your account","Rewards & Wallet","Gift cards","Contact us","Settings","Sign out"]
+    var data = NSDictionary()
     
+    ///
     override func viewDidLoad() {
         super.viewDidLoad()
         cellLoad()
+        getprofile()
         profileTable.dataSource = self
         profileTable.delegate = self
+        self.Topview.layer.cornerRadius = 25
+        Topview.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -67,3 +78,40 @@ extension ProfileVC: UITableViewDelegate,UITableViewDataSource{
     }
     
 }
+
+extension ProfileVC{
+    func getprofile(){
+        let userid = UserDefaults.standard.value(forKey: "id") as! String
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let head: HTTPHeaders = ["x-access-token": token]
+        print(Api.Getprofile+userid,"Profile url")
+        AF.request(Api.Getprofile+userid,method: .get,headers: head).responseJSON{
+            response in
+            switch(response.result){
+            case .success(let json):do{
+                let status = response.response?.statusCode
+                let respond = json as! NSDictionary
+                print(respond)
+                if status == 200{
+                    self.data = respond.object(forKey: "data") as! NSDictionary
+                    self.setdata()
+                }else{
+                    print("error")
+                }
+            }
+                
+            case .failure(let error):do{
+                print(error)
+            }
+                
+            }
+            }
+        }
+    
+    func setdata(){
+        Profilename.text = data.object(forKey: "name") as! String
+        email.text = data.object(forKey: "email") as! String
+    }
+        
+    }
+

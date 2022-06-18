@@ -14,12 +14,15 @@ class SettingVC: UIViewController {
     @IBOutlet weak var profileIg: UIImageView!
     @IBOutlet weak var settingTable: UITableView!
   ///
+    @IBOutlet weak var Topview: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         cellLoad()
         settingTable.dataSource = self
         settingTable.delegate = self
+        self.Topview.layer.cornerRadius = 25
+        Topview.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
     }
 ///
     override var preferredStatusBarStyle: UIStatusBarStyle{

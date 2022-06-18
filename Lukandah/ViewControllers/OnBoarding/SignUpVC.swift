@@ -30,8 +30,14 @@ class SignUpVC: UIViewController {
             let ok3 = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alert3.addAction(ok3)
             self.present(alert3, animated: true, completion: nil)
-
-    }else{
+            }
+        else if EmailField.text == "" {
+            let alert4 = UIAlertController(title: "Signup", message: "Please enter email", preferredStyle: .alert)
+            let ok4 = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert4.addAction(ok4)
+            self.present(alert4, animated: true, completion: nil)
+    }
+        else{
             signupApi()
     }
     }

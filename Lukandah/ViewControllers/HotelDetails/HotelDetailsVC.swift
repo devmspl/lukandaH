@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Alamofire
 
 class HotelDetailsVC: UIViewController,MKMapViewDelegate {
 
@@ -31,15 +32,22 @@ class HotelDetailsVC: UIViewController,MKMapViewDelegate {
     @IBOutlet weak var hotelImageCollection: UICollectionView!
     @IBOutlet weak var aminitiesCollection: UICollectionView!
     @IBOutlet weak var offerDetailsCollection: UICollectionView!
+    
+    var data = NSDictionary()
     ///
+    ///
+    var hotelId = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        gethotelbyid()
 
     }
     
     @IBAction func onReadPolicy(_ sender: Any) {
     }
     @IBAction func onCheckoutTap(_ sender: Any) {
+        
     }
     
     @IBAction func onBackTap(_ sender: Any) {
@@ -77,5 +85,38 @@ extension HotelDetailsVC:UICollectionViewDelegate,UICollectionViewDataSource{
         
     }
     
+    
+}
+
+extension HotelDetailsVC{
+    func gethotelbyid(){
+        AF.request(Api.Gethotelbyid+hotelId,method: .get).responseJSON{
+            response in
+            switch(response.result){
+            case .success(let json):do{
+                let status = response.response?.statusCode
+                let respond = json as! NSDictionary
+                print(respond)
+                if status == 200{
+                    self.data = respond.object(forKey: "data") as! NSDictionary
+                    self.setData()
+                }else{
+                    print("error")
+                }
+                
+            }
+            case .failure(let error):do{
+                print(error)
+            }
+                
+            }
+        }
+    }
+    func setData(){
+        hotelname.text = data.object(forKey: "name") as! String
+        hotelNamme.text = data.object(forKey: "name") as! String
+        hotelDescription.text = data.object(forKey: "description") as! String
+        price.text = "$ \(data.object(forKey: "price")as! Int)"
+    }
     
 }

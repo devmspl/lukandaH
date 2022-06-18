@@ -15,7 +15,10 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if UserDefaults.standard.value(forKey: "id") != nil{
+            let vc = storyBoards.Bottombar.instantiateViewController(withIdentifier: "TabbarVC") as! TabbarVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         // Do any additional setup after loading the view.
     }
        
@@ -77,6 +80,11 @@ extension LoginVC{
                 print(respond)
                 if status == 200{
                     print("api integrated")
+                    let data = respond.object(forKey: "data") as! NSDictionary
+                    let id = data.object(forKey: "id") as! String
+                    let token = data.object(forKey: "token") as! String
+                    UserDefaults.standard.setValue(id, forKey: "id")
+                    UserDefaults.standard.setValue(token, forKey: "token")
                     let vc = storyBoards.Bottombar.instantiateViewController(withIdentifier: "TabbarVC") as! TabbarVC
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
