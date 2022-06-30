@@ -24,21 +24,23 @@ class ProfileVC: UIViewController {
     
     @IBOutlet weak var Topview: UIView!
     @IBOutlet weak var Profilename: UILabel!
-    let profileOptionArray = ["Manage your account","Rewards & Wallet","Gift cards","Contact us","Settings","Sign out"]
+    let profileOptionArray = ["Edit Profile","Rewards & Wallet","Gift cards","Contact us","Settings","Sign out"]
     var data = NSDictionary()
     
     ///
     override func viewDidLoad() {
         super.viewDidLoad()
         cellLoad()
-        getprofile()
         profileTable.dataSource = self
         profileTable.delegate = self
         self.Topview.layer.cornerRadius = 25
         Topview.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
-        
-    }
     
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        getprofile()
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
@@ -76,7 +78,15 @@ extension ProfileVC: UITableViewDelegate,UITableViewDataSource{
         return 70
         
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch(indexPath.row){
+        case 0:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "EditprofileVC") as! EditprofileVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        default:
+            print("hello")
+        }
+    }
 }
 
 extension ProfileVC{

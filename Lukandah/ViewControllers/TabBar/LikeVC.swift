@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class LikeVC: UIViewController {
 
     @IBOutlet weak var searchTable: UITableView!
     @IBOutlet weak var searchTextFeild: UITextField!
-    
+    var dataa = [AnyObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTable.dataSource = self
@@ -66,4 +67,29 @@ extension LikeVC: UITableViewDelegate,UITableViewDataSource{
     }
     
     
+}
+
+extension LikeVC{
+    func getsearchhotels(){
+        let token = UserDefaults.standard.value(forKey: "id") as! String
+        let head: HTTPHeaders = ["x-access-token":token]
+        
+        AF.request(Api.SearchHotels,method: .get,headers: head).responseJSON{
+            response in
+            switch(response.result){
+            case .success(let json):do{
+                let status = response.response?.statusCode
+                let respond = json as! NSDictionary
+                print(respond)
+                if status == 200{
+                    self.dataa = respond.object(forKey: "data") as! [AnyObject]
+                }
+            }
+            case .failure(let error):do{
+                print(error)
+            }
+
+            }
+        }
+    }
 }
