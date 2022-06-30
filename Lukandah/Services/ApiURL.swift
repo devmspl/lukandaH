@@ -15,5 +15,10 @@ public struct Api {
     public static var Getprofile = baseUrl + "users/profile/"
     public static var Gethotel = baseUrl + "hotels/getHotels/"
     public static var Gethotelbyid = baseUrl + "hotels/getHotelById/"
+    public static var Usersupdate = baseUrl + "users/update/"
+    public static var Getuserprofile = baseUrl + "users/profile/"
+    public static var ResetPassword = baseUrl + "users/resetPassword/"
+    public static var SearchHotels = baseUrl + "hotels/search/"
+    public static var RatingReviews = baseUrl + "hotels/ratingReview"
 }
  

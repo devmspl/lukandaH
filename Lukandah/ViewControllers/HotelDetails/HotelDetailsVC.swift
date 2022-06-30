@@ -47,6 +47,8 @@ class HotelDetailsVC: UIViewController,MKMapViewDelegate {
     @IBAction func onReadPolicy(_ sender: Any) {
     }
     @IBAction func onCheckoutTap(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CheckoutInfoVC") as! CheckoutInfoVC
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
